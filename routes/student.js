@@ -81,7 +81,31 @@ router.get('/details/:id',async(req,res)=>{
     }
 });
 
-
+router.delete('/student/:id',async(req,res)=>{
+    try {
+        const stud=await student.findById(req.params.id);
+        if(stud){
+            await stud.remove();
+            return res.status(200).json({
+                status:'success',
+                message:'student details deleted successfully',
+                data:null
+            })
+        }else{
+            return res.status(402).json({
+                status:'failure',
+                message:'no student found with this id',
+                data:null
+            })
+        }
+    } catch (err) {
+        return res.status(401).json({
+            status:'failure',
+            message:err.message,
+            data:null
+        })
+    }
+})
 
 
 
