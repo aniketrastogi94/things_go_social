@@ -79,7 +79,11 @@ router.get('/details/:id',async(req,res)=>{
             data:null
         })
     }
-})
+});
+
+
+
+
 
 
 
