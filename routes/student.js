@@ -55,6 +55,34 @@ router.post('/add',async(req,res)=>{
 });
 
 
+// to retrieve any student details
+router.get('/details/:id',async(req,res)=>{
+    try {
+        const stud=await student.findById(req.params.id);
+        if(stud){
+            return res.status(200).json({
+                status:'success',
+                message:'student details found successfully',
+                data:stud
+            });
+        }else{
+            return res.status(402).json({
+                status:'failure',
+                message:'no student found with this id',
+                data:null
+            })
+        }
+    } catch (err) {
+        return res.status(401).json({
+            status:'failure',
+            message:err.message,
+            data:null
+        })
+    }
+})
+
+
+
 
 
 
